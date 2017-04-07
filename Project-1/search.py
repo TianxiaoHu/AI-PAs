@@ -140,7 +140,7 @@ def nullHeuristic(state, problem=None):
     """
     return 0
 
-def aStarSearch(problem, heuristic):
+def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     fringe = util.PriorityQueue()
     visited = []
@@ -154,7 +154,7 @@ def aStarSearch(problem, heuristic):
         Note: you need to import `searchAgents` first, 
         import `searchAgents` at the very beginning of this file can save your running time
         """
-        
+
         # import searchAgents
         # print searchAgents.cornersHeuristic(tmp_state[0], problem), '->',
         # for child_node, _, _ in problem.getSuccessors(tmp_state[0]):
