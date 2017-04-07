@@ -88,44 +88,50 @@ def depthFirstSearch(problem):
     """
     #construct a stack which contains "current state, the actions to current state"
     fringe = util.Stack()
-    queued = []
+    visited = []
     fringe.push((problem.getStartState(), []))
     while not fringe.isEmpty():
-        cur_node, actions = fringe.pop()
-        for child_node, action, cost in problem.getSuccessors(cur_node):
-            if child_node not in queued:
-                if problem.isGoalState(child_node):
-                    return actions + [action]
+        tmp_state = fringe.pop()
+        if tmp_state[0] not in visited:
+            cur_node, actions = tmp_state
+            if problem.isGoalState(cur_node):
+                return actions
+            visited.append(cur_node)
+            for child_node, action, cost in problem.getSuccessors(cur_node):
                 fringe.push((child_node, actions + [action]))
-                queued.append(child_node)              
+    return []             
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     fringe = util.Queue()
-    queued = []
+    visited = []
     fringe.push((problem.getStartState(), []))
     while not fringe.isEmpty():
-        cur_node, actions = fringe.pop()
-        for child_node, action, cost in problem.getSuccessors(cur_node):
-            if child_node not in queued:
-                if problem.isGoalState(child_node):
-                    return actions + [action]
+        tmp_state = fringe.pop()
+        if tmp_state[0] not in visited:
+            cur_node, actions = tmp_state
+            if problem.isGoalState(cur_node):
+                return actions
+            visited.append(cur_node)
+            for child_node, action, cost in problem.getSuccessors(cur_node):
                 fringe.push((child_node, actions + [action]))
-                queued.append(child_node)
+    return []
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     fringe = util.PriorityQueue()
-    queued = []
+    visited = []
     fringe.push((problem.getStartState(), []), 0)
     while not fringe.isEmpty():
-        cur_node, actions = fringe.pop()
-        for child_node, action, cost in problem.getSuccessors(cur_node):
-            if child_node not in queued:
-                if problem.isGoalState(child_node):
-                    return actions + [action]
-                fringe.push((child_node, actions+[action]), problem.getCostOfActions(actions+[action]))
-                queued.append(child_node)
+        tmp_state = fringe.pop()
+        if tmp_state[0] not in visited:
+            cur_node, actions = tmp_state
+            if problem.isGoalState(cur_node):
+                return actions
+            visited.append(cur_node)
+            for child_node, action, cost in problem.getSuccessors(cur_node):
+                fringe.push((child_node, actions + [action]), problem.getCostOfActions(actions+[action]))
+    return []
 
 def nullHeuristic(state, problem=None):
     """
@@ -136,21 +142,20 @@ def nullHeuristic(state, problem=None):
 
 def aStarSearch(problem, heuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
-
-    def priorityFunction(tuple):
-        return heuristic(tuple[0], problem) + problem.getCostOfActions(tuple[1])
-
-    fringe = util.PriorityQueueWithFunction(priorityFunction)
-    queued = []
-    fringe.push((problem.getStartState(), []))
+    fringe = util.PriorityQueue()
+    visited = []
+    fringe.push((problem.getStartState(), []), heuristic(problem.getStartState(), problem))
     while not fringe.isEmpty():
-        cur_node, actions = fringe.pop()
-        for child_node, action, cost in problem.getSuccessors(cur_node):
-            if child_node not in queued:
-                if problem.isGoalState(child_node):
-                    return actions + [action]
-                fringe.push((child_node, actions + [action]))
-                queued.append(child_node)
+        tmp_state = fringe.pop()
+        if tmp_state[0] not in visited:
+            cur_node, actions = tmp_state
+            if problem.isGoalState(cur_node):
+                return actions
+            visited.append(cur_node)
+            for child_node, action, cost in problem.getSuccessors(cur_node):
+                cost = heuristic(child_node, problem) + problem.getCostOfActions(actions + [action])
+                fringe.push((child_node, actions + [action]), cost)
+    return []
 
 
 # Abbreviations
