@@ -147,6 +147,20 @@ def aStarSearch(problem, heuristic):
     fringe.push((problem.getStartState(), []), heuristic(problem.getStartState(), problem))
     while not fringe.isEmpty():
         tmp_state = fringe.pop()
+
+        """
+        uncomment lines below to see h(n) for current node and its successors
+        you can check by this if the heuristic function is consistent
+        Note: you need to import `searchAgents` first, 
+        import `searchAgents` at the very beginning of this file can save your running time
+        """
+        
+        # import searchAgents
+        # print searchAgents.cornersHeuristic(tmp_state[0], problem), '->',
+        # for child_node, _, _ in problem.getSuccessors(tmp_state[0]):
+        #     print searchAgents.cornersHeuristic(child_node, problem) + 1,
+        # print 
+
         if tmp_state[0] not in visited:
             cur_node, actions = tmp_state
             if problem.isGoalState(cur_node):
