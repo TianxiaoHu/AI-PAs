@@ -464,8 +464,27 @@ def foodHeuristic(state, problem):
     problem.heuristicInfo['wallCount']
     """
     position, foodGrid = state
-    "*** YOUR CODE HERE ***"
-    return 0
+    if len(foodGrid.asList()) == 0:
+        return 0
+    xDimDistance = [position[0] - food[0] for food in foodGrid.asList()]
+    yDimDistance = [position[1] - food[1] for food in foodGrid.asList()]
+
+    xDimRight = - min(xDimDistance) if - min(xDimDistance) > 0 else 0
+    xDimLeft = max(xDimDistance) if max(xDimDistance) > 0 else 0
+    yDimDown = - min(yDimDistance) if - min(yDimDistance) > 0 else 0
+    yDimUp = max(yDimDistance) if max(yDimDistance) > 0 else 0
+
+    """
+    uncomment lines below to check the results
+    """
+    
+    # if xDimLeft < 0 or xDimRight < 0 or yDimUp < 0 or yDimDown < 0:
+    #     print xDimLeft, xDimRight, yDimUp, yDimDown
+    #     print 'Error: Check your code!'
+
+    heuristic = 2 * min(xDimLeft, xDimRight) + max(xDimLeft, xDimRight) + 2 * min(yDimUp, yDimDown) + max(yDimUp, yDimDown)
+    return heuristic
+
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
