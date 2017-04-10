@@ -98,7 +98,8 @@ def depthFirstSearch(problem):
                 return actions
             visited.append(cur_node)
             for child_node, action, cost in problem.getSuccessors(cur_node):
-                fringe.push((child_node, actions + [action]))
+                if child_node not in visited:
+                    fringe.push((child_node, actions + [action]))
     return []             
 
 def breadthFirstSearch(problem):
@@ -114,7 +115,8 @@ def breadthFirstSearch(problem):
                 return actions
             visited.append(cur_node)
             for child_node, action, cost in problem.getSuccessors(cur_node):
-                fringe.push((child_node, actions + [action]))
+                if child_node not in visited:
+                    fringe.push((child_node, actions + [action]))
     return []
 
 def uniformCostSearch(problem):
@@ -130,7 +132,8 @@ def uniformCostSearch(problem):
                 return actions
             visited.append(cur_node)
             for child_node, action, cost in problem.getSuccessors(cur_node):
-                fringe.push((child_node, actions + [action]), problem.getCostOfActions(actions+[action]))
+                if child_node not in visited:
+                    fringe.push((child_node, actions + [action]), problem.getCostOfActions(actions+[action]))
     return []
 
 def nullHeuristic(state, problem=None):
@@ -167,8 +170,9 @@ def aStarSearch(problem, heuristic=nullHeuristic):
                 return actions
             visited.append(cur_node)
             for child_node, action, cost in problem.getSuccessors(cur_node):
-                cost = heuristic(child_node, problem) + problem.getCostOfActions(actions + [action])
-                fringe.push((child_node, actions + [action]), cost)
+                if child_node not in visited:
+                    cost = heuristic(child_node, problem) + problem.getCostOfActions(actions + [action])
+                    fringe.push((child_node, actions + [action]), cost)
     return []
 
 
