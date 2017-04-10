@@ -435,6 +435,19 @@ class AStarFoodSearchAgent(SearchAgent):
         self.searchFunction = lambda prob: search.aStarSearch(prob, foodHeuristic)
         self.searchType = FoodSearchProblem
 
+class MyPositionSearchProblem(PositionSearchProblem):
+        """
+        Inherit from `PositionSearchProblem`, allowing walls as a parameter.
+        """
+        def __init__(self, start, goal, walls):
+            self.walls = walls
+            self.startState = start
+            self.goal = goal
+            self.costFn = lambda x: 1
+            self.visualize = False
+
+            self._visited, self._visitedlist, self._expanded = {}, [], 0 # DO NOT CHANGE
+
 def foodHeuristic(state, problem):
     """
     Your heuristic for the FoodSearchProblem goes here.
@@ -464,25 +477,17 @@ def foodHeuristic(state, problem):
     problem.heuristicInfo['wallCount']
     """
     position, foodGrid = state
-    if len(foodGrid.asList()) == 0:
-        return 0
-    xDimDistance = [position[0] - food[0] for food in foodGrid.asList()]
-    yDimDistance = [position[1] - food[1] for food in foodGrid.asList()]
 
-    xDimRight = - min(xDimDistance) if - min(xDimDistance) > 0 else 0
-    xDimLeft = max(xDimDistance) if max(xDimDistance) > 0 else 0
-    yDimDown = - min(yDimDistance) if - min(yDimDistance) > 0 else 0
-    yDimUp = max(yDimDistance) if max(yDimDistance) > 0 else 0
+    def getMazeDistance(start, end):
+        try:
+            return problem.heuristicInfo[(start, end)]
+        except:
+            prob = MyPositionSearchProblem(start=start, goal=end, walls=problem.walls)
+            problem.heuristicInfo[(start, end)] = len(search.bfs(prob))
+            return problem.heuristicInfo[(start, end)]
 
-    """
-    uncomment lines below to check the results
-    """
-    
-    # if xDimLeft < 0 or xDimRight < 0 or yDimUp < 0 or yDimDown < 0:
-    #     print xDimLeft, xDimRight, yDimUp, yDimDown
-    #     print 'Error: Check your code!'
-
-    heuristic = 2 * min(xDimLeft, xDimRight) + max(xDimLeft, xDimRight) + 2 * min(yDimUp, yDimDown) + max(yDimUp, yDimDown)
+    foodDistance = [getMazeDistance(position, food) for food in foodGrid.asList()]
+    heuristic = max(foodDistance) if len(foodDistance) != 0 else 0
     return heuristic
 
 
