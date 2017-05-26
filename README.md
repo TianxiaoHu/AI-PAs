@@ -48,7 +48,7 @@ Refer to the *Homework 4 - Car.pdf* for further details.
 
 ### lab1 ab-prunning
 
-In this homework, you need to implement the $\alpha$-$\beta$ prunning and pass the online-judge [here](http://10.88.12.45/JudgeOnline/). (You can only access it on campus.)
+In this homework, you need to implement the a-b prunning and pass the online-judge [here](http://10.88.12.45/JudgeOnline/). (You can only access it on campus.)
 
 ## 1st Group Project
 
