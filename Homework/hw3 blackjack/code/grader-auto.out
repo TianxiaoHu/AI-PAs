@@ -1,0 +1,75 @@
+fatalError: false
+maxTotalPoints: 30
+messages: []
+mode: auto
+parts:
+- description: ''
+  extraCredit: false
+  maxPoints: 0
+  maxSeconds: 5
+  messages: [File 'blackjack.pdf' does not exist]
+  name: writeupValid
+  points: 0
+  seconds: 0
+- description: Hidden test for CounterexampleMDP. Ensure that V[startState] is greater
+    after noise is added.
+  extraCredit: false
+  maxPoints: 3
+  maxSeconds: 5
+  messages: []
+  name: 2a-hidden
+  points: 0
+  seconds: 0
+- description: Basic test for succAndProbReward() that covers several edge cases.
+  extraCredit: false
+  maxPoints: 5
+  maxSeconds: 5
+  messages: []
+  name: 3a-basic
+  points: 5
+  seconds: 0
+- description: Hidden test for ValueIteration. Run ValueIteration on BlackjackMDP,
+    then test if V[startState] is correct.
+  extraCredit: false
+  maxPoints: 5
+  maxSeconds: 5
+  messages: []
+  name: 3a-hidden
+  points: 0
+  seconds: 0
+- description: Test for peekingMDP().  Ensure that in at least 10% of states, the
+    optimal policy is to peek.
+  extraCredit: false
+  maxPoints: 4
+  maxSeconds: 5
+  messages: []
+  name: 3b-basic
+  points: 4
+  seconds: 0
+- description: Basic test for incorporateFeedback() using NumberLineMDP.
+  extraCredit: false
+  maxPoints: 5
+  maxSeconds: 10
+  messages: []
+  name: 4a-basic
+  points: 5
+  seconds: 0
+- description: Hidden test for incorporateFeedback(). Run QLearningAlgorithm on smallMDP,
+    then ensure that getQ returns reasonable value.
+  extraCredit: false
+  maxPoints: 3
+  maxSeconds: 3
+  messages: []
+  name: 4a-hidden
+  points: 0
+  seconds: 0
+- description: Basic test for blackjackFeatureExtractor.  Runs QLearningAlgorithm
+    using blackjackFeatureExtractor, then checks to see that Q-values are correct.
+  extraCredit: false
+  maxPoints: 5
+  maxSeconds: 10
+  messages: []
+  name: 4c-basic
+  points: 5
+  seconds: 0
+totalPoints: 19

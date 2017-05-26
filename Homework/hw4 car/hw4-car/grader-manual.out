@@ -1,0 +1,43 @@
+parts:
+- description: 1a writeup
+  extraCredit: false
+  maxPoints: 2
+  messages: ['?']
+  name: 1a
+  points: '?'
+- description: 1b writeup
+  extraCredit: false
+  maxPoints: 2
+  messages: ['?']
+  name: 1b
+  points: '?'
+- description: 1c writeup
+  extraCredit: false
+  maxPoints: 3
+  messages: ['?']
+  name: 1c
+  points: '?'
+- description: conditional distribution
+  extraCredit: false
+  maxPoints: 5
+  messages: ['?']
+  name: 5a
+  points: '?'
+- description: number of assignments K!
+  extraCredit: false
+  maxPoints: 4
+  messages: ['?']
+  name: 5b
+  points: '?'
+- description: treewidth
+  extraCredit: false
+  maxPoints: 2
+  messages: ['?']
+  name: 5c
+  points: '?'
+- description: efficient algorithm for wrap around
+  extraCredit: true
+  maxPoints: 6
+  messages: ['?']
+  name: 5d
+  points: '?'
