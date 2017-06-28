@@ -64,5 +64,5 @@ Refer to the *Project 1 - Search.pdf* for further details.
 
 Built together with[@Anthony-Xu](https://github.com/Anthony-Xu) and [@iriserika](https://github.com/iriserika) .
 
-It's contained in another repo.
+It's contained [here](https://github.com/TianxiaoHu/GomokuAgent).
 
